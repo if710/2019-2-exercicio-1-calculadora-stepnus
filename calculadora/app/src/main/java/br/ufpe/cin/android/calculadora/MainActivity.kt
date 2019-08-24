@@ -2,12 +2,134 @@ package br.ufpe.cin.android.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 
+import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
+
+    var resultado = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        btn_7.setOnClickListener {
+            resultado = resultado + "7"
+            text_calc.setText(resultado)
+            //text_cal é Editable e resultado é String, necessidade do setText
+            //atribuicao direta nao funciona
+        }
+
+        btn_8.setOnClickListener {
+            resultado = resultado + "8"
+            text_calc.setText(resultado)
+        }
+
+        btn_9.setOnClickListener {
+            resultado = resultado + "9"
+            text_calc.setText(resultado)
+        }
+
+        btn_Divide.setOnClickListener {
+            resultado = resultado + "/"
+            text_calc.setText(resultado)
+        }
+
+        btn_4.setOnClickListener {
+            resultado = resultado + "4"
+            text_calc.setText(resultado)
+        }
+
+        btn_5.setOnClickListener {
+            resultado = resultado + "5"
+            text_calc.setText(resultado)
+        }
+
+        btn_6.setOnClickListener {
+            resultado = resultado + "6"
+            text_calc.setText(resultado)
+        }
+
+        btn_Multiply.setOnClickListener {
+            resultado = resultado + "*"
+            text_calc.setText(resultado)
+        }
+
+        btn_1.setOnClickListener {
+            resultado = resultado + "1"
+            text_calc.setText(resultado)
+        }
+
+        btn_2.setOnClickListener {
+            resultado = resultado + "2"
+            text_calc.setText(resultado)
+        }
+
+        btn_3.setOnClickListener {
+            resultado = resultado + "3"
+            text_calc.setText(resultado)
+        }
+
+        btn_Subtract.setOnClickListener {
+            resultado = resultado + "-"
+            text_calc.setText(resultado)
+        }
+
+        btn_Dot.setOnClickListener {
+            resultado = resultado + "."
+            text_calc.setText(resultado)
+        }
+
+        btn_0.setOnClickListener {
+            resultado = resultado + "0"
+            text_calc.setText(resultado)
+        }
+        /*
+        Resultado é convertido para string e armazenado em text_info
+        Quando aparece resultado inválido, vai ativar o Toast com a mensagem (msg)
+         */
+        btn_Equal.setOnClickListener {
+            try {
+                resultado = eval(resultado).toString()
+                text_info.text = resultado
+                //atribuicao direta funciona, text_info e resultado são strings
+            }
+
+            catch(e: RuntimeException) {
+                val msg = "Expressão inválida. Tente novamente."
+                Toast.makeText(
+                    this,
+                    msg,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+        }
+
+        btn_Add.setOnClickListener {
+            resultado = resultado + "+"
+            text_calc.setText(resultado)
+        }
+
+        btn_LParen.setOnClickListener {
+            resultado = resultado + "("
+            text_calc.setText(resultado)
+        }
+
+        btn_RParen.setOnClickListener {
+            resultado = resultado + ")"
+            text_calc.setText(resultado)
+        }
+
+        btn_Power.setOnClickListener {
+            resultado = resultado + "^"
+            text_calc.setText(resultado)
+        }
+
+        btn_Clear.setOnClickListener {
+            resultado = ""
+            text_calc.setText(resultado)
+        }
     }
 
 
@@ -103,4 +225,6 @@ class MainActivity : AppCompatActivity() {
             }
         }.parse()
     }
+
+
 }
